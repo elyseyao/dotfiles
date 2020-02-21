@@ -56,7 +56,7 @@ modules-right = filesystem memory cpu temperature xkeyboard pulseaudio spd date 
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
+tray-background = #222222
 
 ;wm-restack = bspwm
 ;wm-restack = i3
