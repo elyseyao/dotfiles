@@ -167,17 +167,23 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-# Terminate already running bar instances
+
+# POLYBAR 
 exec_always --no-startup-id killall -q polybar
-# Wait until the processes have been shut down
-#exec_always --no-startup-id while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id ibus-daemon -drx
+
+# SET BACKGROUND 
 exec_always --no-startup-id hsetroot -solid "#6d7e5e"
 
-#1b383e
-#6d7e5e
-#19304f
-#27689e
-#3c3b4b
+# SCREENSHOTS
+bindsym Print --release exec maim -s | tee ~/pictures/scrn/$(date +%F-%T).png | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print --release exec scrot -u ~/pictures/scrn/$(date +%F-%T).png | xclip -selection clipboard -t image/png
+bindsym Ctrl+Print --release exec scrot ~/pictures/scrn/$(date +%F-%T).png | xclip -selection clipboard -t image/png
+
+#VOLUME
+bindsym XF86AudioRaiseVolume  --release exec pactl set-sink-volume @DEFAULT_SINK@ +10% 
+bindsym XF86AudioLowerVolume --release exec pactl set-sink-volume @DEFAULT_SINK@ -10% 
+bindsym XF86AudioMute --release exec pactl set-sink-mute @DEFAULT_SINK@ toggle 
